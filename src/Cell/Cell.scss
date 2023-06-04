@@ -4,3 +4,7 @@
     place-items: center;
     padding-block: 2rem;
 }
+
+.cell.active {
+    opacity: .64;
+}

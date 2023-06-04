@@ -1,12 +1,16 @@
 import './Cell.scss';
 
 type CellProps = {
-    day: number
+    day: number;
+    isToday: boolean;
 }
 
-export default ({ day }: CellProps) => {
+export default ({ day, isToday }: CellProps) => {
+    const activeClass = isToday ? 'active' : ''
+    const classes = `cell ${activeClass}`;
+
     return (
-        <div className='cell'>
+        <div className={classes}>
             {day}
         </div>
     );

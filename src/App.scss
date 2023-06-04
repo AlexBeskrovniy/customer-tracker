@@ -41,13 +41,6 @@
 //   color: #888;
 // }
 
-.cells-wrapper {
-  display: grid;
-  gap: .5rem;
-  grid-template-columns: repeat(5, 1fr);
-  margin-bottom: 2rem;
-}
-
 .nav {
   display: flex;
   justify-content: space-between;
