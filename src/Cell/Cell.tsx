@@ -7,7 +7,7 @@ type CellProps = {
 export default ({ day }: CellProps) => {
     return (
         <div className='cell'>
-            Cell = {day}
+            {day}
         </div>
     );
 }

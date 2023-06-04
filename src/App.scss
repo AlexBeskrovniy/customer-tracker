@@ -44,4 +44,19 @@
 .cells-wrapper {
   display: grid;
   gap: .5rem;
+  grid-template-columns: repeat(5, 1fr);
+  margin-bottom: 2rem;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+
+  &-icon {
+    > svg {
+      width: 2rem;
+      height: 2rem;
+      fill: #fff;
+    }
+  }
 }
