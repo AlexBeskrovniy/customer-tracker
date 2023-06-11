@@ -7,7 +7,7 @@ export default () => {
     const { year, month, day } = useParams();
 
     const dayObj = new Date(Number(year), Number(month), Number(day));
-    const DATE = dayjs(dayObj).format('MMMM D, YYYY');
+    const DATE = dayjs(dayObj).format('MMMM D dddd, YYYY');
 
     return (
         <h4>{DATE}</h4>
