@@ -1,6 +1,7 @@
 .cells-wrapper {
     display: grid;
     gap: .5rem;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(5, 1fr);
     margin-bottom: 2rem;
 }

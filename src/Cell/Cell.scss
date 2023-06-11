@@ -2,7 +2,12 @@
     background: red;
     color: #fff;
     place-items: center;
-    padding-block: 2rem;
+    padding-block: 1rem;
+    cursor: pointer;
+
+    &:hover {
+        opacity: .36;
+    }
 }
 
 .cell.active {
