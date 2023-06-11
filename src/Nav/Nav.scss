@@ -1,0 +1,12 @@
+.nav {
+    display: flex;
+    justify-content: space-between;
+  
+    &-icon {
+      > svg {
+        width: 2rem;
+        height: 2rem;
+        fill: #fff;
+      }
+    }
+}
