@@ -10,7 +10,6 @@ type CellProps = {
 }
 
 export default ({ day, month, year, isToday }: CellProps) => {
-    console.log(day, month, year);
     const activeClass = isToday ? 'active' : ''
     const classes = `cell ${activeClass}`;
 
