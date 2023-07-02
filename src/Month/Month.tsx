@@ -4,7 +4,7 @@ import './Month.scss';
 import Cell from '../Cell/Cell';
 import Nav from '../Nav/Nav';
 
-import { useAuthContext } from '../AuthProvider';
+// import { useAuthContext } from '../AuthProvider';
 
 type MonthProps = {
     year: number;
@@ -22,11 +22,10 @@ export default ({ month, year, changeMonth }: MonthProps) => {
         dayCells.push(<Cell key={i} day={i} month={month} year={year} isToday={i === TODAY && isCurrentMonthAndYear}/>);    
     }
 
-    const { user }: any = useAuthContext();
+    // const { user }: any = useAuthContext();
 
     return (
         <>
-            <h4>{ user.displayName }</h4>
             <h3>{ selectedMonthTitle }</h3>
             <div className='cells-wrapper'>
                 { dayCells }

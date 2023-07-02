@@ -1,0 +1,28 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &-user-avatar {
+        height: 2rem;
+        width: 2rem;
+        border-radius: 50%;
+        overflow: hidden;
+        flex-shrink: 0;
+
+        &-image {
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+    }
+
+    &-user-name {
+        font-size: .7rem;
+        flex-grow: 1;
+    }
+
+    &-logout {
+        font-size: .7rem;
+    }
+}

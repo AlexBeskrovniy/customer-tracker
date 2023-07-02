@@ -1,32 +1,36 @@
 import { useState, useEffect, useContext, createContext, PropsWithChildren } from 'react';
-import { signInWithGoogle } from './firebase';
+import { signInWithGoogle, auth } from './firebase';
+import { signOut, onAuthStateChanged } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
-const AuthContext = createContext({ user: null, login: () => {}, logout: () => {} });
+const AuthContext = createContext<any>({});
 
 export const useAuthContext = () => {
     return useContext(AuthContext);
 }
 
 const AuthProvider = ({ children }: PropsWithChildren) => {
+    const navigate = useNavigate();
     const [user, setUser] = useState<any>(null);
 
-    // useEffect(() => {
-    //     const getUser = async () => {
-    //         const user = await signInWithGoogle();
-    //         console.log(user);
-    //         setUser(user);
-    //     }
-
-    //     getUser().catch(console.error);
-        
-    // }, []);
+    useEffect(() => {
+        onAuthStateChanged(auth, user => {
+            if (user) {
+                setUser(user);
+                console.log(user);
+                navigate('/');
+            } else {
+                setUser(null);
+            }
+        });
+    }, []);
 
     const login = () => {
         signInWithGoogle().catch(console.error);
     }
 
     const logout = () => {
-        console.log('logout');
+        signOut(auth);
     }
 
     return (

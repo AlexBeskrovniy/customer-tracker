@@ -6,6 +6,7 @@ import './App.scss'
 import AuthProvider from './AuthProvider';
 import AuthRedirect from './Auth/AuthCheck';
 import Login from './Auth/Login';
+import Header from './Header/Header';
 import Month from './Month/Month';
 import Day from './Day/Day';
 
@@ -35,6 +36,7 @@ function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
+        <Header />
         <Routes>
           <Route path='/login' element={ <Login /> } />
           <Route path='/' element={
