@@ -7,6 +7,7 @@ import AuthProvider from './AuthProvider';
 import AuthRedirect from './Auth/AuthCheck';
 import Login from './Auth/Login';
 import Header from './Header/Header';
+import Form from './Form/Form';
 import Month from './Month/Month';
 import Day from './Day/Day';
 
@@ -46,6 +47,7 @@ function App() {
           />
           <Route path='/:year/:month/:day' element={<Day />} />
         </Routes>
+        <Form />
       </AuthProvider>
     </BrowserRouter>
   )

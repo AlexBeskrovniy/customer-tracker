@@ -1,0 +1,12 @@
+.form {
+    width: min(400px, 100%);
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+
+    &-input {
+        height: 2rem;
+        padding: .3rem;
+    }
+}
