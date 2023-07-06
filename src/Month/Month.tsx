@@ -3,6 +3,7 @@ import * as dayjs from 'dayjs'
 import './Month.scss';
 import Cell from '../Cell/Cell';
 import Nav from '../Nav/Nav';
+import Form from '../Form/Form';
 
 // import { useAuthContext } from '../AuthProvider';
 
@@ -31,6 +32,7 @@ export default ({ month, year, changeMonth }: MonthProps) => {
                 { dayCells }
             </div>
             <Nav changeMonth={changeMonth} />
+            <Form />
         </>
     );
 }

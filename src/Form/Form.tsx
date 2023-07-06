@@ -2,6 +2,7 @@ import { ChangeEvent, FormEvent, useState } from 'react';
 import { db } from '../firebase';
 import { collection, addDoc, getDocs } from 'firebase/firestore';
 import { useAuthContext } from '../AuthProvider';
+import { useGetData } from '../useData';
 import './Form.scss';
 
 interface FormState  {
@@ -19,6 +20,7 @@ const initialFormState = { date: '', customer: '', price: '', notes: '' }
 
 const Form = () => {
     const { user } = useAuthContext();
+    
     const [values, setValues] = useState<FormState>(initialFormState);
 
     const handleFormStateChange = (name: string) => {
@@ -36,7 +38,7 @@ const Form = () => {
         }
         try {
             const docRef = await addDoc(collection(db, "customers"), {
-              customer: body,    
+              ...body,    
             });
             console.log("Document written with ID: ", docRef.id);
         } catch (err) {
