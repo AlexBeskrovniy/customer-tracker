@@ -1,23 +1,53 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
+import { db } from '../firebase';
+import { collection, addDoc, getDocs } from 'firebase/firestore';
+import { useAuthContext } from '../AuthProvider';
 import './Form.scss';
 
+interface FormState  {
+    date: string,
+    customer: string,
+    price: string,
+    notes: string
+}
+
+interface SubmitData extends FormState {
+    uid: string
+}
+
+const initialFormState = { date: '', customer: '', price: '', notes: '' }
+
 const Form = () => {
-    const [values, setValues] = useState({ date: '', customer: '', price: '', notes: '' });
-    // const [date, setDate] = useState('');
-    // const [customer, setCustomer] = useState('');
-    // const [price, setPrice] = useState(0);
-    // const [notes, setNotes] = useState('');
+    const { user } = useAuthContext();
+    const [values, setValues] = useState<FormState>(initialFormState);
 
     const handleFormStateChange = (name: string) => {
         return (e: ChangeEvent) => {
             const target = e.target as HTMLInputElement
             setValues({ ...values, [name]: target.value });
-            console.log(values);
+        }
+    }
+
+    const handleSubmit = async (e: FormEvent) => {
+        e.preventDefault();
+        const body: SubmitData = {
+            ...values,
+            uid: user.uid
+        }
+        try {
+            const docRef = await addDoc(collection(db, "customers"), {
+              customer: body,    
+            });
+            console.log("Document written with ID: ", docRef.id);
+        } catch (err) {
+            console.error("Error adding document: ", err);
+        } finally {
+            setValues(initialFormState);
         }
     }
 
     return (
-        <form className="form">
+        <form className="form" onSubmit={handleSubmit}>
             <input
                 className="form-input"
                 type="date"
@@ -47,7 +77,7 @@ const Form = () => {
                 className="form-textarea"
                 name="notes" 
                 rows={5}
-                defaultValue={values.notes}
+                value={values.notes}
                 placeholder='Notes'
                 onChange={handleFormStateChange('notes')}
             >
