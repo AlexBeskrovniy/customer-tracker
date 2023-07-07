@@ -1,8 +1,9 @@
 import { useState, useEffect, useContext, createContext, PropsWithChildren } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { signInWithGoogle, auth } from './firebase';
 import { signOut, onAuthStateChanged } from 'firebase/auth';
 import type { User } from "firebase/auth";
-import { useNavigate } from 'react-router-dom';
 
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { db } from "./firebase";
@@ -39,17 +40,20 @@ const AuthProvider = ({ children }: PropsWithChildren) => {
                 navigate('/');
                 const dataQuery = query(customerColRef, where("uid", "==", user.uid));
                 
-                onSnapshot(dataQuery, (querySnapshot) => {
-                
-                    const userData = querySnapshot.docs.map(doc => {
-                        return {
-                            id: doc.id,
-                            ...doc.data()
-                        }
-                    });
-                    console.log(userData);
-                    setData(userData);
-                });
+                onSnapshot(dataQuery,
+                    (querySnapshot) => {
+                        const userData = querySnapshot.docs.map(doc => {
+                            return {
+                                id: doc.id,
+                                ...doc.data()
+                            }
+                        });
+                        setData(userData);
+                    },
+                    (error) => {
+                        console.error(error);
+                    }
+                );
             } else {
                 setUser(null);
                 setData(data);
