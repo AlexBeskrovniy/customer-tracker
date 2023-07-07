@@ -1,9 +1,10 @@
 import { useState, useEffect, useContext, createContext, PropsWithChildren } from 'react';
 import { signInWithGoogle, auth } from './firebase';
 import { signOut, onAuthStateChanged } from 'firebase/auth';
+import type { User } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
 
-import { collection, onSnapshot, query, where, getDocs } from "firebase/firestore";
+import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { db } from "./firebase";
 
 const AuthContext = createContext<any>({});
@@ -26,9 +27,9 @@ type CustomerDocs = CustomerDoc[] | [];
 const customerColRef = collection(db, "customers");
 
 const AuthProvider = ({ children }: PropsWithChildren) => {
-    const navigate = useNavigate();
-    const [user, setUser] = useState<any>(null);
+    const [user, setUser] = useState<User | null>(null);
     const [data, setData] = useState<CustomerDocs>([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         onAuthStateChanged(auth, user => {
@@ -38,21 +39,20 @@ const AuthProvider = ({ children }: PropsWithChildren) => {
                 navigate('/');
                 const dataQuery = query(customerColRef, where("uid", "==", user.uid));
                 
-                getDocs(dataQuery)
-                    .then(snapshot => {
-                        let customers;
-                        customers = snapshot.docs.map(doc => {
-                            return {
-                                id: doc.id,
-                                ...doc.data()
-                            }
-                        });
-                        console.log(customers);
-                        setData(customers);
-                    })
-                    .catch(console.error);
+                onSnapshot(dataQuery, (querySnapshot) => {
+                
+                    const userData = querySnapshot.docs.map(doc => {
+                        return {
+                            id: doc.id,
+                            ...doc.data()
+                        }
+                    });
+                    console.log(userData);
+                    setData(userData);
+                });
             } else {
                 setUser(null);
+                setData(data);
             }
         });
     }, []);
