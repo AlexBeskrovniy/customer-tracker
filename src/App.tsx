@@ -1,5 +1,5 @@
 import * as dayjs from 'dayjs';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import './App.scss'
@@ -7,7 +7,6 @@ import AuthProvider from './AuthProvider';
 import AuthRedirect from './Auth/AuthCheck';
 import Login from './Auth/Login';
 import Header from './Header/Header';
-import Form from './Form/Form';
 import Month from './Month/Month';
 import Day from './Day/Day';
 
@@ -36,16 +35,19 @@ function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        {/* <DataProvider> */}
         <Header />
         <Routes>
           <Route path='/login' element={ <Login /> } />
           <Route path='/' element={
             <AuthRedirect>
                 <Month month={month} year={year} changeMonth={changeMonth} />
-            </AuthRedirect> }
-          />
-          <Route path='/:year/:month/:day' element={<Day />} />
+            </AuthRedirect> 
+          } />
+          <Route path='/:year/:month/:day' element={
+            <AuthRedirect>
+              <Day />
+            </AuthRedirect>
+          } />
         </Routes>
       </AuthProvider>
     </BrowserRouter>
