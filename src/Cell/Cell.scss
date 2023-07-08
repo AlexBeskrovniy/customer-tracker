@@ -1,13 +1,14 @@
 .cell {
     position: relative;
-    background: red;
+    background: #1A1A1A;
     color: #fff;
     place-items: center;
     padding-block: 1rem;
     cursor: pointer;
 
     &:hover {
-        opacity: .36;
+        // opacity: .64;
+        background: #3B3B3B
     }
 
     &-link {
@@ -20,5 +21,6 @@
 }
 
 .cell.active {
-    opacity: .64;
+    // opacity: .64;
+    background: #3B3B3B
 }

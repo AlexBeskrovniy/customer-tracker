@@ -1,0 +1,46 @@
+.modal {
+    &-backdrop {
+        background-color: #000;
+        opacity: .36;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 5;
+    }
+
+    &-content {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0);
+        background-color: #242424;
+        width: min(400px, 90vw);
+        z-index: 10;
+        padding: 1rem;
+    }
+
+    &-header {
+        display: flex;
+        justify-content: end;
+        margin-bottom: .5rem;
+    }
+
+    &-trigger {
+        width: 2rem;
+        height: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        background-color: #1A1A1A;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    &-close {
+        color: white;
+        cursor: pointer;
+    }
+}

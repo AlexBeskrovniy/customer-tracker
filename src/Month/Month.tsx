@@ -5,8 +5,6 @@ import Cell from '../Cell/Cell';
 import Nav from '../Nav/Nav';
 import Form from '../Form/Form';
 
-// import { useAuthContext } from '../AuthProvider';
-
 type MonthProps = {
     year: number;
     month: number;
@@ -23,8 +21,6 @@ export default ({ month, year, changeMonth }: MonthProps) => {
         dayCells.push(<Cell key={i} day={i} month={month} year={year} isToday={i === TODAY && isCurrentMonthAndYear}/>);    
     }
 
-    // const { user }: any = useAuthContext();
-
     return (
         <>
             <h3>{ selectedMonthTitle }</h3>
@@ -32,7 +28,7 @@ export default ({ month, year, changeMonth }: MonthProps) => {
                 { dayCells }
             </div>
             <Nav changeMonth={changeMonth} />
-            <Form />
+            {/* <Form /> */}
         </>
     );
 }

@@ -1,8 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { db } from '../firebase';
-import { collection, addDoc, getDocs } from 'firebase/firestore';
+import { collection, addDoc } from 'firebase/firestore';
 import { useAuthContext } from '../AuthProvider';
-import { useGetData } from '../useData';
 import './Form.scss';
 
 interface FormState  {
@@ -85,7 +84,7 @@ const Form = () => {
             >
             </textarea>
 
-            <button>Submit</button>
+            <button className='form-submit'>Submit</button>
         </form>
     );
 }
