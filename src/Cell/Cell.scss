@@ -7,7 +7,6 @@
     cursor: pointer;
 
     &:hover {
-        // opacity: .64;
         background: #3B3B3B
     }
 
@@ -21,6 +20,18 @@
 }
 
 .cell.active {
-    // opacity: .64;
     background: #3B3B3B
+}
+
+.cell.filled {
+    &::after {
+        content: "";
+        position: absolute;
+        top: .4rem;
+        right: .4rem;
+        width: .4rem;
+        height: .4rem;
+        background-color: yellow;
+        border-radius: 50%;
+    }
 }

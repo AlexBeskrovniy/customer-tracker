@@ -7,11 +7,13 @@ type CellProps = {
     month: number;
     year: number;
     isToday: boolean;
+    hasData: boolean;
 }
 
-export default ({ day, month, year, isToday }: CellProps) => {
-    const activeClass = isToday ? 'active' : ''
-    const classes = `cell ${activeClass}`;
+export default ({ day, month, year, isToday, hasData }: CellProps) => {
+    const activeClass = isToday ? 'active' : '';
+    const withData = hasData ? 'filled': '';
+    const classes = `cell ${activeClass} ${withData}`;
 
     return (
         <div className={classes}>

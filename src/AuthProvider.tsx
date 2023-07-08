@@ -14,22 +14,11 @@ export const useAuthContext = () => {
     return useContext(AuthContext);
 }
 
-interface CustomerDoc {
-    id: string,
-    date?: string,
-    customer?: string,
-    price?: string,
-    notes?: string,
-    uid?: string
-}
-
-type CustomerDocs = CustomerDoc[] | [];
-
 const customerColRef = collection(db, "customers");
 
 const AuthProvider = ({ children }: PropsWithChildren) => {
     const [user, setUser] = useState<User | null>(null);
-    const [data, setData] = useState<CustomerDocs>([]);
+    const [storage, setStorage] = useState<CustomerDocs>([]);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -42,13 +31,19 @@ const AuthProvider = ({ children }: PropsWithChildren) => {
                 
                 onSnapshot(dataQuery,
                     (querySnapshot) => {
-                        const userData = querySnapshot.docs.map(doc => {
+                        const userData: CustomerDocs = querySnapshot.docs.map(doc => {
+                            const { date, customer, price, notes, uid } = doc.data();
                             return {
                                 id: doc.id,
-                                ...doc.data()
+                                date,
+                                customer,
+                                price,
+                                notes,
+                                uid
+                                // ...doc.data()
                             }
                         });
-                        setData(userData);
+                        setStorage(userData);
                     },
                     (error) => {
                         console.error(error);
@@ -56,7 +51,6 @@ const AuthProvider = ({ children }: PropsWithChildren) => {
                 );
             } else {
                 setUser(null);
-                setData(data);
             }
         });
     }, []);
@@ -70,7 +64,7 @@ const AuthProvider = ({ children }: PropsWithChildren) => {
     }
 
     return (
-        <AuthContext.Provider value={{ user, data, login, logout }}>
+        <AuthContext.Provider value={{ user, storage, login, logout }}>
             { children }
         </AuthContext.Provider>
     );
