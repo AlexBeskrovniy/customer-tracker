@@ -1,10 +1,19 @@
 import * as dayjs from 'dayjs'
 import { Link, useParams } from 'react-router-dom';
+import { useAuthContext } from '../AuthProvider';
 
 import './Day.scss';
 
 export default () => {
     const { year, month, day } = useParams();
+    const { storage } = useAuthContext();
+
+    const dayRecords = storage.length > 0 && storage.filter((record: CustomerDoc) => {
+        const [y, m, d] = record.date.split('-');
+        return Number(y) === Number(year) && Number(m) === Number(month) + 1 && Number(d) === Number(day);
+    });
+
+    console.log(dayRecords);
 
     const dayObj = new Date(Number(year), Number(month), Number(day));
     const DATE = dayjs(dayObj).format('MMMM D dddd, YYYY');
@@ -19,6 +28,19 @@ export default () => {
                     Back
                 </Link>
                 <h4>{DATE}</h4>
+            </div>
+            <div className='day-records'>
+                {dayRecords.length ? (
+                    dayRecords.map((record: CustomerDoc) => (
+                        <div key={record.id} className='day-record-card'>
+                            <div>Customer: {record.customer}</div>
+                            {record.price && <div>Price: {record.price}</div>}
+                            {record.notes && <div>Notes: {record.notes}</div>}
+                        </div>
+                    ))
+                ) : (
+                    <h1>No data</h1>
+                )}
             </div>
         </>
     );
