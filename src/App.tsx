@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.scss'
 import AuthProvider from './AuthProvider';
 import AuthRedirect from './Auth/AuthCheck';
+import SvgSprite from './Icons/SvgSprite';
 import Login from './Auth/Login';
 import Header from './Header/Header';
 import Month from './Month/Month';
@@ -35,6 +36,7 @@ function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
+        <SvgSprite />
         <Header />
         <Routes>
           <Route path='/login' element={ <Login /> } />
