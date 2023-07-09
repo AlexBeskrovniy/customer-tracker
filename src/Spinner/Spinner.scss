@@ -1,0 +1,15 @@
+@keyframes rotation {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.spinner {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid;
+    border-color: #fff transparent #fff transparent;
+    border-radius: 50%;
+    animation: 1s infinite rotation;
+}

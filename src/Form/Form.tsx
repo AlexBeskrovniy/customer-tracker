@@ -2,6 +2,8 @@ import { ChangeEvent, FormEvent, useState } from 'react';
 import { db } from '../firebase';
 import { collection, addDoc } from 'firebase/firestore';
 import { useAuthContext } from '../AuthProvider';
+
+import SubmitButton from './SubmitButton';
 import './Form.scss';
 
 interface FormState  {
@@ -21,6 +23,7 @@ const Form = () => {
     const { user } = useAuthContext();
     
     const [values, setValues] = useState<FormState>(initialFormState);
+    const [loading, setLoading] = useState<boolean>(false);
 
     const handleFormStateChange = (name: string) => {
         return (e: ChangeEvent) => {
@@ -31,6 +34,7 @@ const Form = () => {
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
+        setLoading(true);
         const body: SubmitData = {
             ...values,
             uid: user.uid
@@ -44,6 +48,7 @@ const Form = () => {
             console.error("Error adding document: ", err);
         } finally {
             setValues(initialFormState);
+            setLoading(false);
         }
     }
 
@@ -84,7 +89,7 @@ const Form = () => {
             >
             </textarea>
 
-            <button className='form-submit'>Submit</button>
+            <SubmitButton loading={loading} />
         </form>
     );
 }
