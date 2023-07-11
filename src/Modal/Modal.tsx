@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext, createContext } from 'react';
 import { createPortal } from 'react-dom';
 
 import Icon from "../Icons/Icon";
@@ -6,6 +6,12 @@ import './Modal.scss';
 
 interface ModalProps {
     content: JSX.Element
+}
+
+const ModalContext = createContext<any>({});
+
+export const useModalContext = () => {
+    return useContext(ModalContext);
 }
 
 const Modal = ({ content }: ModalProps) => {
@@ -33,11 +39,13 @@ const Modal = ({ content }: ModalProps) => {
                                 <Icon id={"#close"}/>
                             </div>
                         </div>
-                        <div className='modal-body'>
-                            { content }
-                        </div>
+                        <ModalContext.Provider value={{ close }}>
+                            <div className='modal-body'>
+                                { content }
+                            </div>
+                        </ModalContext.Provider>
                     </div>
-                </> ,
+                </>,
                 document.body
             )}
         </>

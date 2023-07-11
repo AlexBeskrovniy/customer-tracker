@@ -2,6 +2,7 @@ import { ChangeEvent, FormEvent, useState } from 'react';
 import { db } from '../firebase';
 import { collection, addDoc } from 'firebase/firestore';
 import { useAuthContext } from '../AuthProvider';
+import { useModalContext } from '../Modal/Modal';
 
 import SubmitButton from './SubmitButton';
 import './Form.scss';
@@ -22,6 +23,7 @@ const initialFormState = { date: '', customer: '', price: '', notes: '' }
 
 const Form = () => {
     const { user } = useAuthContext();
+    const { close } = useModalContext();
     
     const [values, setValues] = useState<FormState>(initialFormState);
     const [loading, setLoading] = useState<boolean>(false);
@@ -51,6 +53,7 @@ const Form = () => {
         } finally {
             setValues(initialFormState);
             setLoading(false);
+            close();
         }
     }
 

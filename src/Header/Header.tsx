@@ -13,7 +13,7 @@ const Header = () => {
                     <img className="header-user-avatar-image" src={user.photoURL} alt="Avatar" />
                 </div>
                 <div>
-                    <Modal content={<Form/>} />
+                    <Modal content={<Form />} />
                 </div>
                 {/* <div className="header-logout">
                     <button onClick={logout}>
