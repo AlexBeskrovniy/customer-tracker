@@ -1,0 +1,48 @@
+.customer-card {
+    background-color: #1A1A1A;
+    color: #ddd;
+    border: 1px solid #fff;
+    padding: 1rem;
+
+
+    &-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &-name {
+            font-weight: bold;
+        }
+
+        &-price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            opacity: 0.36;
+
+        }
+    }
+
+    &-notes {
+        font-size: .8rem;
+        opacity: 0.36;
+    }
+
+    &-footer {
+        margin-top: .5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &-check-button,
+    &-delete-button {
+        width: 2rem;
+        height: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #242424;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+}

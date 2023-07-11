@@ -2,6 +2,7 @@ import * as dayjs from 'dayjs'
 import { Link, useParams } from 'react-router-dom';
 import { useAuthContext } from '../AuthProvider';
 
+import CustomerCard from '../CustomerCard/CustomerCard';
 import Icon from '../Icons/Icon';
 import './Day.scss';
 
@@ -31,11 +32,7 @@ export default () => {
             <div className='day-records'>
                 {dayRecords.length ? (
                     dayRecords.map((record: CustomerDoc) => (
-                        <div key={record.id} className='day-record-card'>
-                            <div>Customer: {record.customer}</div>
-                            {record.price && <div>Price: {record.price}</div>}
-                            {record.notes && <div>Notes: {record.notes}</div>}
-                        </div>
+                        <CustomerCard key={record.id} record={record} />
                     ))
                 ) : (
                     <h1>No data</h1>
