@@ -14,7 +14,8 @@ interface FormState  {
 }
 
 interface SubmitData extends FormState {
-    uid: string
+    uid: string,
+    isCompleted: boolean
 }
 
 const initialFormState = { date: '', customer: '', price: '', notes: '' }
@@ -37,7 +38,8 @@ const Form = () => {
         setLoading(true);
         const body: SubmitData = {
             ...values,
-            uid: user.uid
+            uid: user.uid,
+            isCompleted: false
         }
         try {
             const docRef = await addDoc(collection(db, "customers"), {

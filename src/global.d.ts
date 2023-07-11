@@ -4,6 +4,7 @@ interface CustomerDoc {
     customer: string,
     price?: string,
     notes?: string,
+    isCompleted?: boolean,
     uid?: string
 }
 

@@ -32,13 +32,14 @@ const AuthProvider = ({ children }: PropsWithChildren) => {
                 onSnapshot(dataQuery,
                     (querySnapshot) => {
                         const userData: CustomerDocs = querySnapshot.docs.map(doc => {
-                            const { date, customer, price, notes, uid } = doc.data();
+                            const { date, customer, price, notes, isCompleted, uid } = doc.data();
                             return {
                                 id: doc.id,
                                 date,
                                 customer,
                                 price,
                                 notes,
+                                isCompleted,
                                 uid
                                 // ...doc.data()
                             }

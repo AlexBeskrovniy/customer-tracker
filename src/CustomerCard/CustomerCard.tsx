@@ -1,4 +1,5 @@
-import { doc, deleteDoc } from 'firebase/firestore'
+import { useRef } from 'react';
+import { doc, updateDoc, deleteDoc } from 'firebase/firestore'
 import { db } from '../firebase';
 
 import './CustomerCard.scss';
@@ -9,10 +10,22 @@ type CustomerCardProps = {
 }
 
 const CustomerCard = ({ record }: CustomerCardProps) => {
+    const checkBoxRef = useRef<HTMLInputElement | null>(null);
+
     const deleteRecord = (record: CustomerDoc) => {
-          confirm(`This action will delete the "${record.customer}" record. Are you sure?`) &&
-          deleteDoc(doc(db, "customers", record.id));
-      }
+        confirm(`This action will delete the "${record.customer}" record. Are you sure?`) &&
+        deleteDoc(doc(db, "customers", record.id));
+    }
+
+    const handleComplete = (record: CustomerDoc) => {
+        if (checkBoxRef.current !== null) {
+            checkBoxRef.current.checked = !checkBoxRef.current?.checked;
+        }
+        const docRef = doc(db, "customers", record.id);
+        updateDoc(docRef, {
+            isCompleted: checkBoxRef.current?.checked
+        })
+    }
 
     return (
         <div className='customer-card'>
@@ -28,8 +41,11 @@ const CustomerCard = ({ record }: CustomerCardProps) => {
                 {record.notes ? record.notes : 'No notes'}
             </div>
             <div className='customer-card-footer'>
-                <div className='customer-card-check-button'>
-                    <Icon id={"#check"}/>
+                <div className='customer-card-check-button' onClick={() => handleComplete(record)}>
+                    <input type="checkbox" ref={checkBoxRef} defaultChecked={record.isCompleted} hidden />
+                    {record.isCompleted &&
+                        <Icon id={"#check"} />
+                    }
                 </div>
                 <div className='customer-card-delete-button' onClick={() => deleteRecord(record)}>
                     <Icon id={"#trash-bin"} />
