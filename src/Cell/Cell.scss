@@ -17,6 +17,14 @@
         width: 100%;
         height: 100%;
     }
+
+    &-label {
+        position: absolute;
+        bottom: .4rem;
+        right: .4rem;
+        font-size: .8rem;
+        opacity: .36;
+    }
 }
 
 .cell.active {
