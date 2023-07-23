@@ -22,7 +22,7 @@ export default ({ day, month, year, isToday, hasData }: CellProps) => {
     return (
         <div className={classes}>
             <Link to={`/${year}/${month}/${day}`} className='cell-link'/>
-            <span>
+            <span className='cell-day-number'>
                 {day}
             </span>
             <span className='cell-label'>
