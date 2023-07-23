@@ -51,6 +51,9 @@ const CustomerCard = ({ record }: CustomerCardProps) => {
                     <Icon id={"#trash-bin"} />
                 </div>
             </div>
+            <div className='customer-card-completed-label' hidden={!record.isCompleted}>
+                Done
+            </div>
         </div>
     );
 }
