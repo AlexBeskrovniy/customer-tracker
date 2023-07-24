@@ -50,13 +50,13 @@
     &-completed-label {
         font-size: 2rem;
         line-height: normal;
-        color: #A00000;
+        color: #007C00;
         padding: .3rem;
         position: absolute;
         top: 50%;
         left: 70%;
         transform: translateY(-50%) rotate(-45deg);
-        border: 2px solid red;
+        border: 2px solid #007C00;
         border-radius: 10px;
         animation: .3s linear stamp;
 
