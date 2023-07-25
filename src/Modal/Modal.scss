@@ -1,3 +1,33 @@
+@keyframes liftUp {
+    from {
+        transform: translate3d(-50%, -50%, 0) scale(0.2);
+    }
+
+    to {
+        transform: translate3d(-50%, -50%, 0) scale(1);
+    }
+}
+
+@keyframes liftDown {
+    from {
+        transform: translate3d(-50%, -50%, 0) scale(1);
+    }
+
+    to {
+        transform: translate3d(-50%, -50%, 0) scale(0.2);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: .36;
+    }
+}
+
 .modal {
     &-backdrop {
         background-color: #000;
@@ -8,6 +38,7 @@
         width: 100vw;
         height: 100vh;
         z-index: 5;
+        animation: fadeIn .3s linear;
     }
 
     &-content {
@@ -20,6 +51,7 @@
         z-index: 10;
         padding: 1rem;
         border: 1px solid #fff;
+        animation: liftUp .3s linear;
     }
 
     &-header {
