@@ -8,21 +8,44 @@ interface ModalProps {
     content: JSX.Element
 }
 
+interface ModalAnimationNames {
+    modalAnimation: 'liftUp' | 'liftDown';
+    backdropAnimation: 'fadeIn' | 'fadeOut';
+}
+
 const ModalContext = createContext<any>({});
 
 export const useModalContext = () => {
     return useContext(ModalContext);
 }
 
+const initialAnimations: ModalAnimationNames = {
+    modalAnimation: 'liftUp',
+    backdropAnimation: 'fadeIn'
+}
+
+const reversedAnimations: ModalAnimationNames = {
+    modalAnimation: 'liftDown',
+    backdropAnimation: 'fadeOut'
+}
+
+const ANIMATION_TIME = 300;
+
 const Modal = ({ content }: ModalProps) => {
     const [show, setShow] = useState(false);
+    const [animation, setAnimation] = useState<ModalAnimationNames>(initialAnimations);
 
     const open = () => {
         setShow(true);
     }
 
     const close = () => {
-        setShow(false);
+        setAnimation(reversedAnimations);
+
+        setTimeout(() => {
+            setAnimation(initialAnimations);
+            setShow(false);
+        }, ANIMATION_TIME);
     }
 
     return (
@@ -32,8 +55,8 @@ const Modal = ({ content }: ModalProps) => {
             </div>
             {show && createPortal(
                 <>
-                    <div className='modal-backdrop' onClick={close}></div>
-                    <div className='modal-content'>
+                    <div className='modal-backdrop' onClick={close} style={{ animationName: animation.backdropAnimation }}></div>
+                    <div className='modal-content' style={{ animationName: animation.modalAnimation }}>
                         <div className='modal-header'>
                             <div className='modal-close' onClick={close}>
                                 <Icon id={"#close"}/>

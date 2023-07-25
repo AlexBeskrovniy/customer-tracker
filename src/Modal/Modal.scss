@@ -28,6 +28,16 @@
     }
 }
 
+@keyframes fadeOut {
+    from {
+        opacity: .36;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
 .modal {
     &-backdrop {
         background-color: #000;
@@ -39,6 +49,7 @@
         height: 100vh;
         z-index: 5;
         animation: fadeIn .3s linear;
+        animation-fill-mode: forwards;
     }
 
     &-content {
@@ -52,6 +63,7 @@
         padding: 1rem;
         border: 1px solid #fff;
         animation: liftUp .3s linear;
+        animation-fill-mode: forwards;
     }
 
     &-header {
