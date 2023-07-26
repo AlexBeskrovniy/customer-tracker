@@ -1,4 +1,4 @@
-import * as dayjs from 'dayjs'
+import dayjs from 'dayjs'
 import { Link, useParams } from 'react-router-dom';
 import { useAuthContext } from '../AuthProvider';
 

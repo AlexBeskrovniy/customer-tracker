@@ -1,4 +1,4 @@
-import * as dayjs from 'dayjs';
+import dayjs from 'dayjs';
 import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
