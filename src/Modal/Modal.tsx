@@ -4,6 +4,8 @@ import { createPortal } from 'react-dom';
 import Icon from "../Icons/Icon";
 import './Modal.scss';
 
+import { useAuthContext } from '../AuthProvider';
+
 interface ModalProps {
     content: JSX.Element
 }
@@ -48,11 +50,16 @@ const Modal = ({ content }: ModalProps) => {
         }, ANIMATION_TIME);
     }
 
+    const { user } = useAuthContext();
+
     return (
         <>
-            <div className='modal-trigger' onClick={open}>
-                <Icon id={"#plus"}/>
-            </div>
+            {user && 
+                <div className='modal-trigger' onClick={open}>
+                    <Icon id={"#plus"}/>
+                </div>
+            }
+            
             {show && createPortal(
                 <>
                     <div className='modal-backdrop' onClick={close} style={{ animationName: animation.backdropAnimation }}></div>

@@ -4,12 +4,14 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import './App.scss'
 import AuthProvider from './AuthProvider';
-import AuthRedirect from './Auth/AuthCheck';
+import AuthRedirect from './Auth/AuthRedirect';
 import SvgSprite from './Icons/SvgSprite';
 import Login from './Auth/Login';
 import Header from './Header/Header';
 import Month from './Month/Month';
 import Day from './Day/Day';
+import Modal from "./Modal/Modal";
+import Form from "./Form/Form";
 
 const initMonth = dayjs().month();
 const initYear = dayjs().year();
@@ -51,6 +53,7 @@ function App() {
             </AuthRedirect>
           } />
         </Routes>
+        <Modal content={<Form />} />
       </AuthProvider>
     </BrowserRouter>
   )

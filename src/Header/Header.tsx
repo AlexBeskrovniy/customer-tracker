@@ -1,6 +1,4 @@
 import { useAuthContext } from "../AuthProvider";
-import Modal from "../Modal/Modal";
-import Form from "../Form/Form";
 
 import './Header.scss';
 
@@ -12,14 +10,11 @@ const Header = () => {
                 <div className="header-user-avatar">
                     <img className="header-user-avatar-image" src={user.photoURL} alt="Avatar" />
                 </div>
-                <div>
-                    <Modal content={<Form />} />
-                </div>
-                {/* <div className="header-logout">
+                <div className="header-logout">
                     <button onClick={logout}>
                         Logout
                     </button>
-                </div> */}
+                </div>
             </header>
         )
     }
