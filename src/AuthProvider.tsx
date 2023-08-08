@@ -8,7 +8,19 @@ import type { User } from "firebase/auth";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { db } from "./firebase";
 
-const AuthContext = createContext<any>({});
+interface AuthContextValue {
+    user: User | null;
+    storage: CustomerDocs;
+    login?: () => void;
+    logout?: () => void;
+}
+
+const defaultValue = {
+    user: null,
+    storage: []
+}
+
+const AuthContext = createContext<AuthContextValue>(defaultValue);
 
 export const useAuthContext = () => {
     return useContext(AuthContext);

@@ -15,7 +15,11 @@ interface ModalAnimationNames {
     backdropAnimation: 'fadeIn' | 'fadeOut';
 }
 
-const ModalContext = createContext<any>({});
+interface ModalContextValue {
+    close?: () => void
+}
+
+const ModalContext = createContext<ModalContextValue>({});
 
 export const useModalContext = () => {
     return useContext(ModalContext);

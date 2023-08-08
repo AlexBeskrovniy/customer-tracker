@@ -30,7 +30,7 @@ export default () => {
                 <h4>{DATE}</h4>
             </div>
             <div className='day-records'>
-                {dayRecords.length ? (
+                {dayRecords !== false && dayRecords.length ? (
                     dayRecords.map((record: CustomerDoc) => (
                         <CustomerCard key={record.id} record={record} />
                     ))
