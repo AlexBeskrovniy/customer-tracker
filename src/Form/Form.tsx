@@ -40,7 +40,7 @@ const Form = () => {
         setLoading(true);
         const body: SubmitData = {
             ...values,
-            uid: user.uid,
+            uid: user!.uid,
             isCompleted: false
         }
         try {

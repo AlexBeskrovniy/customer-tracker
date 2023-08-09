@@ -8,7 +8,7 @@ const Header = () => {
         return (
             <header className="header">
                 <div className="header-user-avatar">
-                    <img className="header-user-avatar-image" src={user.photoURL} alt="Avatar" />
+                    <img className="header-user-avatar-image" src={user.photoURL ? user.photoURL : ""} alt="Avatar" />
                 </div>
                 <div className="header-logout">
                     <button onClick={logout}>

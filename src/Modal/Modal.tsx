@@ -16,10 +16,14 @@ interface ModalAnimationNames {
 }
 
 interface ModalContextValue {
-    close?: () => void
+    close: () => void
 }
 
-const ModalContext = createContext<ModalContextValue>({});
+const defaultValue = {
+    close: () => {}
+}
+
+const ModalContext = createContext<ModalContextValue>(defaultValue);
 
 export const useModalContext = () => {
     return useContext(ModalContext);
