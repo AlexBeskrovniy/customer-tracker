@@ -34,6 +34,15 @@
         -webkit-appearance: none;
         margin            : 0;
     }
+
+    input[type=date]::placeholder,
+    input[type=time]::placeholder {
+        font-family: inherit;
+        font-size  : 1rem;
+        font-style : normal;
+        font-weight: 400;
+        color: inherit;
+    }
    
     input[type=date]::-webkit-calendar-picker-indicator,
     input[type=time]::-webkit-calendar-picker-indicator {
