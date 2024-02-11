@@ -34,6 +34,7 @@ const AuthProvider = ({ children }: PropsWithChildren) => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        let unsubscribe: any;
         onAuthStateChanged(auth, user => {
             if (user) {
                 setUser(user);
@@ -41,7 +42,7 @@ const AuthProvider = ({ children }: PropsWithChildren) => {
                 navigate('/');
                 const dataQuery = query(customerColRef, where("uid", "==", user.uid));
                 
-                onSnapshot(dataQuery,
+                unsubscribe = onSnapshot(dataQuery,
                     (querySnapshot) => {
                         const userData: CustomerDocs = querySnapshot.docs.map(doc => {
                             const { date, customer, price, notes, isCompleted, uid } = doc.data();
@@ -63,17 +64,23 @@ const AuthProvider = ({ children }: PropsWithChildren) => {
                     }
                 );
             } else {
+                if (typeof unsubscribe === 'function') {
+                    unsubscribe();
+                }
                 setUser(null);
+                setStorage([]);
             }
         });
+
+        return unsubscribe;
     }, []);
 
     const login = () => {
         signInWithGoogle().catch(console.error);
     }
 
-    const logout = () => {
-        signOut(auth);
+    const logout = async () => {
+        await signOut(auth);
     }
 
     return (
