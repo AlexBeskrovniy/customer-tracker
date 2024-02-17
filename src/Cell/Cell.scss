@@ -49,6 +49,10 @@
             border-radius: 50%;
         }
     }
+
+    &:first-child {
+        grid-column-start: var(--grid-start-position, 1);
+    }
 }
 
 @media (max-width: 800px) {
