@@ -1,4 +1,3 @@
-import { CSSProperties } from 'react';
 import dayjs from 'dayjs'
 
 import './Month.scss';
@@ -11,10 +10,6 @@ type MonthProps = {
     month: number;
     changeMonth: (dir: number) => void;
 }
-
-interface MyCustomCSS extends CSSProperties {
-    '--grid-start-position': number;
-  }
 
 export default ({ month, year, changeMonth }: MonthProps) => {
     const DAYS_IN_MONTH = dayjs().month(month).daysInMonth();
@@ -42,14 +37,11 @@ export default ({ month, year, changeMonth }: MonthProps) => {
             />);    
     }
 
-    const monthFirstDay = new Date(year, month, 1);
-    const monthFirstDayPosition = dayjs(monthFirstDay).day() || 7;
-
     return (
         <>
             <h3>{ selectedMonthTitle }</h3>
 
-            <div className='cells-wrapper' style={{'--grid-start-position': monthFirstDayPosition} as MyCustomCSS}>
+            <div className='cells-wrapper'>
                 { dayCells }
             </div>
 
