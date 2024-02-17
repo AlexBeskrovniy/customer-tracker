@@ -19,13 +19,18 @@ interface MyCustomCSS extends CSSProperties {
 export default ({ day, month, year, isToday, hasData }: CellProps) => {
     const activeClass = isToday ? 'active' : '';
     const withData = hasData ? 'filled': '';
-    const classes = `cell ${activeClass} ${withData}`;
-
+    
     const dayObj = new Date(year, month, day);
-    const LABEL = dayjs(dayObj).format('ddd');
+    // const LABEL = dayjs(dayObj).format('ddd');
 
+    const dayIndex = dayjs(dayObj).day();
+    // Handling 'Sunday' and 'Saturday'
+    const holidayClass = dayIndex === 6 || dayIndex === 0 ? 'holiday' : '';
+    
     // || 7 - because of 'Sunday' dayjs index === 0
-    const monthFirstDayPosition = day === 1 ? dayjs(dayObj).day() || 7 : null;
+    const monthFirstDayPosition = day === 1 ? dayIndex || 7 : null;
+    
+    const classes = `cell ${holidayClass} ${activeClass} ${withData}`;
 
     return (
         <div
@@ -35,9 +40,9 @@ export default ({ day, month, year, isToday, hasData }: CellProps) => {
             <span className='cell-day-number'>
                 {day}
             </span>
-            <span className='cell-label'>
+            {/* <span className='cell-label'>
                 {LABEL}
-            </span>
+            </span> */}
         </div>
     );
 }

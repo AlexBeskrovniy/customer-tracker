@@ -1,0 +1,15 @@
+.week {
+    &-bar {
+        display: grid;
+        gap: .2rem;
+        grid-template-columns: repeat(7, 1fr);
+        padding-bottom: .2rem;
+    }
+
+    &-day {
+        background: #3B3B3B;
+        opacity: .64;
+        color: #fff;
+        padding-block: 1rem;
+    }
+}

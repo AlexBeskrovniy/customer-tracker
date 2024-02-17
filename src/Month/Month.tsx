@@ -1,6 +1,7 @@
 import dayjs from 'dayjs'
 
 import './Month.scss';
+import WeekBar from '../WeekBar/WeekBar';
 import Cell from '../Cell/Cell';
 import Nav from '../Nav/Nav';
 import { useAuthContext } from '../AuthProvider';
@@ -40,11 +41,12 @@ export default ({ month, year, changeMonth }: MonthProps) => {
     return (
         <>
             <h3>{ selectedMonthTitle }</h3>
-
-            <div className='cells-wrapper'>
-                { dayCells }
+            <div className='month'>
+                <WeekBar />
+                <div className='month-cells-wrapper'>
+                    { dayCells }
+                </div>
             </div>
-
             <Nav changeMonth={changeMonth} />
         </>
     );

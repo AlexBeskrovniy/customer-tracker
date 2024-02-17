@@ -19,18 +19,21 @@
         z-index: 2;
     }
 
-    &-day-number,
-    &-label {
-        line-height: normal;
-    }
+    // &-day-number,
+    // &-label {
+    //     line-height: 1;
+    // }
 
-    &-label {
-        position: absolute;
-        bottom: .4rem;
-        right: .4rem;
-        font-size: .8rem;
-        opacity: .36;
-        width: fit-content;
+    // &-label {
+    //     position: absolute;
+    //     bottom: .4rem;
+    //     right: .4rem;
+    //     font-size: .8rem;
+    //     opacity: .36;
+    //     width: fit-content;
+    // }
+    &.holiday {
+        background: lighten(#1A1A1A, 20%);
     }
 
     &.active {
@@ -55,18 +58,18 @@
     }
 }
 
-@media (max-width: 800px) {
-    .cell {
-        height: 3rem;
+// @media (max-width: 800px) {
+//     .cell {
+//         height: 3rem;
 
-        &-day-number {
-            position: absolute;
-            top: .4rem;
-            left: .4rem;
-        }
+//         &-day-number {
+//             position: absolute;
+//             top: .4rem;
+//             left: .4rem;
+//         }
 
-        &-label {
-            left: .4rem;
-        }
-    }
-}
+//         &-label {
+//             left: .4rem;
+//         }
+//     }
+// }
