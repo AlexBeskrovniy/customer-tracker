@@ -2,6 +2,8 @@ import dayjs from 'dayjs';
 import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
+import { dateInputValueFormater } from './helpers';
+
 import './App.scss'
 import AuthProvider from './AuthProvider';
 import AuthRedirect from './Auth/AuthRedirect';
@@ -16,9 +18,11 @@ import Form from "./Form/Form";
 const initMonth = dayjs().month();
 const initYear = dayjs().year();
 
-const trueMonth = (initMonth + 1).toString().padStart(2, '0');
-const initDay = dayjs().get('date').toString().padStart(2, '0');
-const initFormDefaultDate = `${initYear}-${trueMonth}-${initDay}`
+// const trueMonth = (initMonth + 1).toString().padStart(2, '0');
+// const initDay = dayjs().get('date').toString().padStart(2, '0');
+const initDay = dayjs().get('date');
+// const initFormDefaultDate = `${initYear}-${trueMonth}-${initDay}`
+const initFormDefaultDate = dateInputValueFormater(initYear, initMonth, initDay)
 console.log(initFormDefaultDate);
 
 function App() {
@@ -55,7 +59,10 @@ function App() {
           } />
           <Route path='/:year/:month/:day' element={
             <AuthRedirect>
-              <Day />
+              <Day
+                initFormDefaultDate={initFormDefaultDate}
+                setFormDefaultDate={setFormDefaultDate}
+              />
             </AuthRedirect>
           } />
         </Routes>
