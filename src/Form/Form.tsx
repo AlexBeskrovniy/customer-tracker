@@ -7,6 +7,9 @@ import { useModalContext } from '../Modal/Modal';
 import SubmitButton from './SubmitButton';
 import './Form.scss';
 
+interface FormProps {
+    defaultDate: string
+}
 interface FormState  {
     date: string,
     customer: string,
@@ -21,7 +24,7 @@ interface SubmitData extends FormState {
 
 const initialFormState = { date: '', customer: '', price: '', notes: '' }
 
-const Form = () => {
+const Form = ({ defaultDate }: FormProps) => {
     const { user } = useAuthContext();
     const { close } = useModalContext();
     
@@ -63,7 +66,8 @@ const Form = () => {
                 className="form-input"
                 type="date"
                 name="date"
-                value={values.date}
+                // value={values.date}
+                defaultValue={defaultDate}
                 onChange={handleFormStateChange('date')}
                 required
             />

@@ -16,9 +16,15 @@ import Form from "./Form/Form";
 const initMonth = dayjs().month();
 const initYear = dayjs().year();
 
+const trueMonth = (initMonth + 1).toString().padStart(2, '0');
+const initDay = dayjs().get('date').toString().padStart(2, '0');
+const initFormDefaultDate = `${initYear}-${trueMonth}-${initDay}`
+console.log(initFormDefaultDate);
+
 function App() {
   const [month, setMonth] = useState<number>(initMonth);
   const [year, setYear] = useState<number>(initYear);
+  const [formDefaultDate, setFormDefaultDate] = useState<string>(initFormDefaultDate);
 
   const changeMonth = (dir: number) => {
     if (month === 0 && dir === -1) {
@@ -53,7 +59,7 @@ function App() {
             </AuthRedirect>
           } />
         </Routes>
-        <Modal content={<Form />} />
+        <Modal content={<Form defaultDate={formDefaultDate} />} />
       </AuthProvider>
     </BrowserRouter>
   )

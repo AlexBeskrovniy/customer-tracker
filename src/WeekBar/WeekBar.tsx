@@ -11,7 +11,7 @@ export default () => {
     return (
         <div className='week-bar'>
             { days.map(day => (
-                <div className='week-day'>
+                <div className='week-day' key={day}>
                     { day }
                 </div>
             )) }
