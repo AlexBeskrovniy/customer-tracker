@@ -27,8 +27,6 @@ export default ({ initFormDefaultDate, setFormDefaultDate }: DayProps) => {
     const DATE = dayjs(dayObj).format('MMMM D dddd, YYYY');
 
     useEffect(() => {
-        // const trueMonth = (Number(month!) + 1).toString().padStart(2, '0');
-        // const trueDay = day!.padStart(2, '0');
         const updatedFormDefaultDate = dateInputValueFormater(Number(year), Number(month), Number(day))
         setFormDefaultDate(updatedFormDefaultDate);
 

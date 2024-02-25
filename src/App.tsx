@@ -17,13 +17,9 @@ import Form from "./Form/Form";
 
 const initMonth = dayjs().month();
 const initYear = dayjs().year();
-
-// const trueMonth = (initMonth + 1).toString().padStart(2, '0');
-// const initDay = dayjs().get('date').toString().padStart(2, '0');
 const initDay = dayjs().get('date');
-// const initFormDefaultDate = `${initYear}-${trueMonth}-${initDay}`
-const initFormDefaultDate = dateInputValueFormater(initYear, initMonth, initDay)
-console.log(initFormDefaultDate);
+
+const initFormDefaultDate = dateInputValueFormater(initYear, initMonth, initDay);
 
 function App() {
   const [month, setMonth] = useState<number>(initMonth);

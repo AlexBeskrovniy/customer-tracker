@@ -21,7 +21,6 @@ export default ({ day, month, year, isToday, hasData }: CellProps) => {
     const withData = hasData ? 'filled': '';
     
     const dayObj = new Date(year, month, day);
-    // const LABEL = dayjs(dayObj).format('ddd');
 
     const dayIndex = dayjs(dayObj).day();
     // Handling 'Sunday' and 'Saturday'
@@ -40,9 +39,6 @@ export default ({ day, month, year, isToday, hasData }: CellProps) => {
             <span className='cell-day-number'>
                 {day}
             </span>
-            {/* <span className='cell-label'>
-                {LABEL}
-            </span> */}
         </div>
     );
 }

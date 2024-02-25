@@ -22,11 +22,12 @@ interface SubmitData extends FormState {
     isCompleted: boolean
 }
 
-const initialFormState = { date: '', customer: '', price: '', notes: '' }
 
 const Form = ({ defaultDate }: FormProps) => {
     const { user } = useAuthContext();
     const { close } = useModalContext();
+
+    const initialFormState = { date: `${defaultDate || ''}`, customer: '', price: '', notes: '' }
     
     const [values, setValues] = useState<FormState>(initialFormState);
     const [loading, setLoading] = useState<boolean>(false);
@@ -66,8 +67,7 @@ const Form = ({ defaultDate }: FormProps) => {
                 className="form-input"
                 type="date"
                 name="date"
-                // value={values.date}
-                defaultValue={defaultDate}
+                value={values.date}
                 onChange={handleFormStateChange('date')}
                 required
             />
