@@ -7,6 +7,9 @@ import { useModalContext } from '../Modal/Modal';
 import SubmitButton from './SubmitButton';
 import './Form.scss';
 
+interface FormProps {
+    defaultDate: string
+}
 interface FormState  {
     date: string,
     customer: string,
@@ -19,11 +22,12 @@ interface SubmitData extends FormState {
     isCompleted: boolean
 }
 
-const initialFormState = { date: '', customer: '', price: '', notes: '' }
 
-const Form = () => {
+const Form = ({ defaultDate }: FormProps) => {
     const { user } = useAuthContext();
     const { close } = useModalContext();
+
+    const initialFormState = { date: `${defaultDate || ''}`, customer: '', price: '', notes: '' }
     
     const [values, setValues] = useState<FormState>(initialFormState);
     const [loading, setLoading] = useState<boolean>(false);
