@@ -82,9 +82,7 @@
         background-color: #1A1A1A;
         border-radius: 50%;
         cursor: pointer;
-        position: absolute;
-        right: 2rem;
-        bottom: 2rem;
+        margin-inline: auto;
     }
 
     &-close {

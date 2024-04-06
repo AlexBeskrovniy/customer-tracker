@@ -10,6 +10,7 @@ import AuthRedirect from './Auth/AuthRedirect';
 import SvgSprite from './Icons/SvgSprite';
 import Login from './Auth/Login';
 import Header from './Header/Header';
+import Footer from './Footer/Footer';
 import Month from './Month/Month';
 import Day from './Day/Day';
 import Modal from "./Modal/Modal";
@@ -46,23 +47,27 @@ function App() {
       <AuthProvider>
         <SvgSprite />
         <Header />
-        <Routes>
-          <Route path='/login' element={ <Login /> } />
-          <Route path='/' element={
-            <AuthRedirect>
-                <Month month={month} year={year} changeMonth={changeMonth} />
-            </AuthRedirect> 
-          } />
-          <Route path='/:year/:month/:day' element={
-            <AuthRedirect>
-              <Day
-                initFormDefaultDate={initFormDefaultDate}
-                setFormDefaultDate={setFormDefaultDate}
-              />
-            </AuthRedirect>
-          } />
-        </Routes>
-        <Modal content={<Form defaultDate={formDefaultDate} />} />
+        <div className='main'>
+          <Routes>
+            <Route path='/login' element={ <Login /> } />
+            <Route path='/' element={
+              <AuthRedirect>
+                  <Month month={month} year={year} changeMonth={changeMonth} />
+              </AuthRedirect> 
+            } />
+            <Route path='/:year/:month/:day' element={
+              <AuthRedirect>
+                <Day
+                  initFormDefaultDate={initFormDefaultDate}
+                  setFormDefaultDate={setFormDefaultDate}
+                />
+              </AuthRedirect>
+            } />
+          </Routes>
+        </div>
+        <Footer>
+          <Modal content={<Form defaultDate={formDefaultDate} />} />
+        </Footer>
       </AuthProvider>
     </BrowserRouter>
   )
