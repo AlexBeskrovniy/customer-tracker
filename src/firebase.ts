@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, getRedirectResult, GoogleAuthProvider, signInWithRedirect } from 'firebase/auth';
+import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -19,9 +19,5 @@ export const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 
 export const signInWithGoogle = async () => {
-  const result = await getRedirectResult(auth);
-
-  if (!result) {
-    await signInWithRedirect(auth, provider);
-  }
+  await signInWithPopup(auth, provider);
 }
